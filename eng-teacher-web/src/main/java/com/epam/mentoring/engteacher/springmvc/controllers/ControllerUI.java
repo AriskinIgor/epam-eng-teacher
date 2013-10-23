@@ -7,4 +7,7 @@ package com.epam.mentoring.engteacher.springmvc.controllers;
  */
 public class ControllerUI {
 
+    public ControllerUI() {
+        // TODO Auto-generated constructor stub
+    }
 }
