@@ -17,13 +17,26 @@
 		<finalName>eng-teacher-web</finalName>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>${maven-war-plugin.version}</version>
+				<groupId>org.jboss.as.plugins</groupId>
+				<artifactId>jboss-as-maven-plugin</artifactId>
+				<version>7.5.Final</version>
 				<configuration>
-					<warSourceDirectory>src/main/webapp</warSourceDirectory>
-					<webXml>src/main/webapp/WEB-INF/web.xml</webXml>
+					<force>true</force>
+					<hostname>localhost</hostname>
+					<port>9999</port>
+					<id>jboss</id>
+					<fileNames>
+						<fileName>target/${project.build.finalName}.war</fileName>
+					</fileNames>
 				</configuration>
+				<executions>
+					<execution>
+						<phase>install</phase>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
