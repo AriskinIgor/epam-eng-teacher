@@ -3,7 +3,7 @@ package com.epam.mentoring.engteacher.persistence.model;
 
 /**
  * Entity Administrator.
- * 
+ *
  * @author Igor_Ariskin
  */
 public class Administrator {

@@ -1,10 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.epam.mentoring</groupId>
 	<artifactId>eng-teacher-web</artifactId>
 	<packaging>war</packaging>
-	<version>1.0</version>
 	<name>eng-teacher-web</name>
 
 	<parent>
@@ -17,13 +15,26 @@
 		<finalName>eng-teacher-web</finalName>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>${maven-war-plugin.version}</version>
+				<groupId>org.jboss.as.plugins</groupId>
+				<artifactId>jboss-as-maven-plugin</artifactId>
+				<version>7.5.Final</version>
 				<configuration>
-					<warSourceDirectory>src/main/webapp</warSourceDirectory>
-					<webXml>src/main/webapp/WEB-INF/web.xml</webXml>
+					<force>true</force>
+					<hostname>localhost</hostname>
+					<port>9999</port>
+					<id>jboss</id>
+					<fileNames>
+						<fileName>target/${project.build.finalName}.war</fileName>
+					</fileNames>
 				</configuration>
+				<executions>
+					<execution>
+						<phase>install</phase>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
