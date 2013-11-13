@@ -5,6 +5,15 @@
 	id="WebApp_ID" version="2.5">
 	<display-name>Epam English Teacher</display-name>
 
+	<servlet-mapping>
+		<servlet-name>RunServlet</servlet-name>
+		<url-pattern>/Run</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>RunServlet</servlet-name>
+		<servlet-class>com.epam.mentoring.engteacher.springmvc.controllers.Controller</servlet-class>
+	</servlet>
+
 	<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>Restricted to Secure role</web-resource-name>
@@ -26,12 +35,11 @@
 		<realm-name>JBoss Secured Realm</realm-name>
 	</login-config>
 
-
 	<security-role>
 		<role-name>Administrator</role-name>
 	</security-role>
 	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>/jsp/index.jsp</welcome-file>
 	</welcome-file-list>
 
 </web-app>
