@@ -22,18 +22,8 @@ public class Student {
     @SequenceGenerator (name = "project_id_seq", sequenceName = "project_id_seq", allocationSize = 1)
     private Long id;
 
-    private Teacher teacher;
-    private Group group;
     @Column(name = "NAME")
     private String name;
-
-    public Group getGroup() {
-        return group;
-    }
-
-    public void setGroup(Group group) {
-        this.group = group;
-    }
 
     public String getName() {
         return name;
@@ -41,13 +31,5 @@ public class Student {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Teacher getTeacher() {
-        return teacher;
-    }
-
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
     }
 }

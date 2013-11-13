@@ -1,16 +1,15 @@
 package com.epam.mentoring.engteacher.springmvc.controllers;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import javax.ejb.Asynchronous;
 import javax.ejb.Stateless;
 import javax.servlet.AsyncContext;
 
+import org.apache.log4j.Logger;
+
 @Stateless
-public class TestAsyncStatelessSessionBean
+public class AsyncBean
   {
-     private Logger logger = Logger.getLogger(TestAsyncStatelessSessionBean.class.getName());
+     private Logger logger = Logger.getLogger(AsyncBean.class.getName());
 
 
      @Asynchronous
@@ -29,7 +28,7 @@ public class TestAsyncStatelessSessionBean
            asyncContext.complete();
 
        } catch (Exception e) {
-           logger.log(Level.SEVERE, e.getMessage(), e);
+           logger.info(e.getMessage(), e);
        }
       }
   }

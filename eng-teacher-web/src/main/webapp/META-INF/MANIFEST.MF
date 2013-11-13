@@ -1,1 +1,1 @@
-Dependencies: com.epam.myproject
+Dependencies: com.epam.myproject, log4j
