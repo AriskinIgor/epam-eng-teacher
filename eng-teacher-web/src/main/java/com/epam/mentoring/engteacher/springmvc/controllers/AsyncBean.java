@@ -26,6 +26,7 @@ public class AsyncBean {
 			logger.info("[EJB Processing is done] : " + data);
 			asyncContext.complete();
 			System.out.println("Test commit");
+			System.out.println("Test commit2");
 		} catch (Exception e) {
 			logger.info(e.getMessage(), e);
 		}
