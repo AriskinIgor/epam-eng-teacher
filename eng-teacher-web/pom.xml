@@ -109,12 +109,6 @@
 		</plugins>
 	</reporting>
 	<dependencies>
-		<dependency>
-			<groupId>com.epam</groupId>
-			<artifactId>myproject</artifactId>
-			<version>1.0</version>
-			<scope>provided</scope>
-		</dependency>
 	</dependencies>
 
 </project>
