@@ -27,6 +27,8 @@ public class AsyncBean {
 			asyncContext.complete();
 			System.out.println("Test commit");
 			System.out.println("Test commit2");
+			System.out.println("Test commit");
+			System.out.println("Test commit3");
 		} catch (Exception e) {
 			logger.info(e.getMessage(), e);
 		}
