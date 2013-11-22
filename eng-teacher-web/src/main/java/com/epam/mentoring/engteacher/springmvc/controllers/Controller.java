@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import com.epam.myproject.TestLibrary;
-
 public class Controller extends HttpServlet implements Servlet {
 
 	private static final long serialVersionUID = -1032455838821512650L;
@@ -29,7 +27,7 @@ public class Controller extends HttpServlet implements Servlet {
 		log.info("Run servlet");
 
 		// Test shared library.
-		TestLibrary.testLib();
+//		TestLibrary.testLib();
 
 		PrintWriter writer = resp.getWriter();
 
