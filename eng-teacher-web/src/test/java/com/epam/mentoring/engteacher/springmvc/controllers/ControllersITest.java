@@ -10,4 +10,9 @@ public class ControllersITest {
 	public void testInsertGroup() {
 		Assert.assertEquals("", "");
 	}
+	
+	@Test
+	public void testInsertStudent() {
+		Assert.assertEquals("", "");
+	}
 }
