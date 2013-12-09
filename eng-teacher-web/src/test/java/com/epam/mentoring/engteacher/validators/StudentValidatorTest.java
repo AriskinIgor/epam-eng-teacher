@@ -52,6 +52,8 @@ public class StudentValidatorTest {
 	private static final String validPatronymic = "Сидоров";
 
 	private static final String validBirthday = "06.01.1991";
+	
+	private static SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 
 	@Rule
 	public TemporaryFolder folder = new TemporaryFolder();
@@ -83,7 +85,6 @@ public class StudentValidatorTest {
 		// Looks up for the EJB
 		studentValidator = (StudentValidator) ctx
 				.lookup("java:global/eng-teacher-web/StudentValidator");
-		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 		validStudent = new Student();
 		validStudent.setLastName(validLastName);
 		validStudent.setFirstName(validFirstName);
@@ -92,9 +93,13 @@ public class StudentValidatorTest {
 	}
 
 	@Test
-	public void testValidate() {
+	public void testValidate() throws ParseException {
 		boolean result = studentValidator.validate(validStudent);
 		assertTrue(result);
+		unvalidStudent = new Student();
+		unvalidStudent.setLastName(unvalidLastName);
+		boolean invalidResult = studentValidator.validate(unvalidStudent);
+		assertFalse(invalidResult);
 	}
 
 	@Test
