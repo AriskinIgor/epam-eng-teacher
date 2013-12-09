@@ -1,5 +1,7 @@
 package com.epam.mentoring.engteacher.persistence.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,26 +12,69 @@ import javax.persistence.Table;
 
 /**
  * Entity Student.
- *
+ * 
  * @author Igor_Ariskin
  */
 @Entity
-@Table (name = "STUDENT")
+@Table(name = "STUDENT")
 public class Student {
 
-    @Id
-    @GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "project_id_seq")
-    @SequenceGenerator (name = "project_id_seq", sequenceName = "project_id_seq", allocationSize = 1)
-    private Long id;
+	@SequenceGenerator(name = "student_id_seq", sequenceName = "student_id_seq", allocationSize = 1, initialValue = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_id_seq")
+	@Id
+	@Column(name = "STUDENT_ID")
+	private Long id;
 
-    @Column(name = "NAME")
-    private String name;
+	@Column(name = "FIRST_NAME", length = 200)
+	private String firstName;
 
-    public String getName() {
-        return name;
-    }
+	@Column(name = "LAST_NAME", length = 200)
+	private String lastName;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	@Column(name = "PATRONYMIC", length = 200)
+	private String patronymic;
+
+	@Column(name = "BIRTHDAY")
+	private Date birthday;
+
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getPatronymic() {
+		return patronymic;
+	}
+
+	public void setPatronymic(String patronymic) {
+		this.patronymic = patronymic;
+	}
+
 }

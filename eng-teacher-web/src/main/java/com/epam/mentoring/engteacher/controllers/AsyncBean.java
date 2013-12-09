@@ -1,4 +1,4 @@
-package com.epam.mentoring.engteacher.springmvc.controllers;
+package com.epam.mentoring.engteacher.controllers;
 
 import javax.ejb.Asynchronous;
 import javax.ejb.Stateless;

@@ -1,4 +1,4 @@
-package com.epam.mentoring.engteacher.springmvc.controllers;
+package com.epam.mentoring.engteacher.controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
