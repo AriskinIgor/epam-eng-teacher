@@ -146,6 +146,7 @@
 							</dependency>
 						</dependencies>
 						<configuration>
+							<argLine>-XX:-UseSplitVerifier</argLine>
 							<includes>
 								<include>**/AllITest.java</include>
 							</includes>
@@ -173,6 +174,7 @@
 							</dependency>
 						</dependencies>
 						<configuration>
+							<argLine>-XX:-UseSplitVerifier</argLine>
 							<includes>
 								<include>**/AllTest.java</include>
 							</includes>
