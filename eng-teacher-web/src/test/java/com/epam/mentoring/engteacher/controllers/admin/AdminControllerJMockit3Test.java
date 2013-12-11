@@ -1,33 +1,28 @@
 package com.epam.mentoring.engteacher.controllers.admin;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import javax.naming.NamingException;
 import javax.naming.directory.InvalidAttributesException;
-import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
+
+import mockit.Mock;
+import mockit.MockUp;
+import mockit.Mocked;
+import mockit.NonStrictExpectations;
+import mockit.Tested;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Incubating;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Spy;
-import org.mockito.runners.MockitoJUnitRunner;
 
 import com.epam.mentoring.engteacher.controllers.StudentBean;
 import com.epam.mentoring.engteacher.persistence.model.Student;
 import com.epam.mentoring.engteacher.validators.StudentValidator;
 
-@RunWith(MockitoJUnitRunner.class)
-public class AdminControllerTest {
-
+public class AdminControllerJMockit3Test {
 	private Student validStudent;
 
 	private static final String validFirstName = "Петр";
@@ -40,14 +35,11 @@ public class AdminControllerTest {
 
 	private static SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 
-	@Mock
-	private StudentValidator validator;
+	@Mocked
+	StudentBean studentBean;
 
-	@Mock
-	private StudentBean studentBean;
-
-	@InjectMocks
-	private AdminController adminController;
+	@Tested
+	AdminController adminController;
 
 	@Before
 	public void setUp() throws ParseException, NamingException {
@@ -58,16 +50,45 @@ public class AdminControllerTest {
 		validStudent.setBirthday(sdf.parse(validBirthday));
 	}
 
+
 	@Test
 	public void testAddNewStudent() throws InvalidAttributesException {
-		when(validator.validate(validStudent)).thenReturn(true);
-		when(studentBean.save(validStudent)).thenReturn(validStudent);
-		assertTrue(adminController.addNewStudent(validStudent));
+		new NonStrictExpectations() {
+			{
+				studentBean.save(validStudent);
+				result = validStudent;
+				times = 1;
+			}
+		};
+
+		adminController.setBean(studentBean);
+		boolean actual = adminController.addNewStudent(validStudent);
+		assertTrue(actual);
 	}
 
-	@Ignore("Not Ready to Run")
-	@Test
-	public void divisionWithException() {
-		System.out.println("Method is not ready yet");
+	@Test(expected = InvalidAttributesException.class)
+	public void testAddNewStudentInvalid() throws InvalidAttributesException {
+
+		new MockUp<StudentValidator>() {
+			
+			@Mock(invocations = 1)
+			boolean validate(Student stud) throws InvalidAttributesException {
+				assertNotNull(stud);
+				throw new InvalidAttributesException();
+			}
+		};
+
+		new NonStrictExpectations() {
+			{
+				studentBean.save(validStudent);
+				times = 0;
+			}
+		};
+
+		adminController.setBean(studentBean);
+
+		boolean actual = adminController.addNewStudent(validStudent);
+		assertTrue(actual);
+
 	}
 }

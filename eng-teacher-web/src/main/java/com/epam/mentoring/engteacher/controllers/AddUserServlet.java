@@ -28,10 +28,10 @@ public class AddUserServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		Student stud = new Student();
 		stud.setFirstName(name);
-		bean.create(stud);
+		Student newStud = bean.save(stud);
 		out.println("Created and persisted " + stud);
 
-		Student s = bean.getStudentByName(name);
+		Student s = (Student) bean.getStudentById(newStud.getId());
 		out.println("Query returned: " + s);
 	}
 

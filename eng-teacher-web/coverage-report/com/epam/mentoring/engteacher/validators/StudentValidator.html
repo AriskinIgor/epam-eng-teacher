@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JMockit Coverage Report - StudentValidator.java</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+  <link rel='stylesheet' type='text/css' href='../../../../../coverage.css'/>
+  <link rel='shortcut icon' type='image/png' href='../../../../../logo.png'/>
+  <script type='text/javascript' src='../../../../../coverage.js'></script>
+  <script type='text/javascript' src='../../../../../prettify.js'></script>
+</head>
+<body onload='prettyPrint()'>
+  <table cellpadding='0' cellspacing='1'>
+    <caption>eng-teacher-web\src\main\java\com\epam\mentoring\engteacher\validators\StudentValidator.java</caption>
+    <tr>
+      <td class='line'>1</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>package com.epam.mentoring.engteacher.validators;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td><pre class='imports prettyprint' onclick='showHideLines(this)'><div>import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.ejb.Stateless;
+
+import com.epam.mentoring.engteacher.persistence.model.Student;
+</div><span>import ...</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>13</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>@Stateless</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>14</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l14s0'>public class StudentValidator {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>16</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	private static final String PATTERN_NAMES = "[^0-9]*";</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>18</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	public boolean validate(Student stud) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>19</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>		<span id='l19s0' title='Executions: 0' class='uncovered'>if (stud == null</span> || <span id='l19s1' title='Executions: 0' class='uncovered'>stud.getFirstName() == null</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>20</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>				|| <span id='l20s1' title='Executions: 0' class='uncovered'>stud.getLastName() == null</span> || <span id='l20s2' title='Executions: 0' class='uncovered'>stud.getFirstName().isEmpty()</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>21</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>				|| <span id='l21s1' title='Executions: 0' class='uncovered'>stud.getLastName().isEmpty()</span> || <span id='l21s2' title='Executions: 0' class='uncovered'>stud.getBirthday() == null) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>22</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l22s0'>			return false;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>23</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>		<span id='l23s0' title='Executions: 0' class='uncovered'>}</span> else <span id='l23s1' title='Executions: 0' class='uncovered'>if (!checkWithRegExp(stud.getLastName())</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>24</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>				|| <span id='l24s1' title='Executions: 0' class='uncovered'>!checkWithRegExp(stud.getFirstName())</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>25</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>				|| <span id='l25s1' title='Executions: 0' class='uncovered'>!lengthCheck(stud.getLastName())</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>26</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>				|| <span id='l26s1' title='Executions: 0' class='uncovered'>!lengthCheck(stud.getFirstName())) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>27</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l27s0'>			return false;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>29</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>		<span id='l29s0' title='Executions: 0' class='uncovered'>}</span> else <span id='l29s1' title='Executions: 0' class='uncovered'>if (stud.getPatronymic() != null</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>30</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>				&& (<span id='l30s1' title='Executions: 0' class='uncovered'>!checkWithRegExp(stud.getPatronymic())</span> ||</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>31</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>						.<span id='l31s0' title='Executions: 0' class='uncovered'>getPatronymic()))) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>32</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l32s0'>			return false;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>33</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>		}</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>34</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l34s0'>		return true;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>35</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	}</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>37</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	public boolean checkWithRegExp(String str) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>38</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l38s0'>		Pattern p = Pattern.compile(PATTERN_NAMES);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>39</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l39s0'>		Matcher m = p.matcher(str);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>40</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l40s0'>		return m.matches();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>41</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	}</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>43</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	public boolean lengthCheck(String str) {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/3</span>
+        <span class='uncovered' onclick="showPath(this,'l44s0 l45s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l44s0 l44s1 l45s0')">B: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l44s0 l44s1 l47s0')">C: 0</span>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>44</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>		<span id='l44s0' title='Executions: 0' class='uncovered'>if (str.length() &lt; 3</span> || <span id='l44s1' title='Executions: 0' class='uncovered'>str.length() > 150) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>45</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l45s0'>			return false;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>46</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>		}</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>47</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l47s0'>		return true;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>48</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	}</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>50</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	public boolean birthdayCheck(Date birthday) {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>0</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#ff0000' onclick='hidePath()'>Path coverage: 0/4</span>
+        <span class='uncovered' onclick="showPath(this,'l51s0 l52s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l51s0 l53s0 l56s0 l59s0')">B: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l51s0 l53s0 l56s0 l57s0 l58s0 l59s0')">C: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l51s0 l53s0 l56s0 l57s0 l58s0 l61s0')">D: 0</span>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>51</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>		<span id='l51s0' title='Executions: 0' class='uncovered'>if (birthday == null)</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>52</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l52s0'>			throw new IllegalArgumentException();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>53</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l53s0'>		Calendar currentCalendar = GregorianCalendar.getInstance();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>54</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l54s0'>		Calendar calendar = new GregorianCalendar();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>55</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l55s0'>		calendar.setTime(birthday);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>56</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>		<span id='l56s0' title='Executions: 0' class='uncovered'>if ((currentCalendar.get(Calendar.YEAR) - calendar.get(Calendar.YEAR)) > 200</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>57</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l57s0'>				|| (currentCalendar.get(Calendar.YEAR) - calendar</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>58</td><td class='count'>0</td>
+      <td><pre class='prettyprint jmp'>						.<span id='l58s0' title='Executions: 0' class='uncovered'>get(Calendar.YEAR)) &lt; 18) {</span></pre></td>
+    </tr>
+    <tr>
+      <td class='line'>59</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l59s0'>			return false;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>60</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>		}</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>61</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l61s0'>		return true;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>62</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	}</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>63</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>}</pre></td>
+    </tr>
+  </table>
+</body>
+</html>

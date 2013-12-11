@@ -1,8 +1,5 @@
 package com.epam.mentoring.engteacher.validators;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,6 +27,8 @@ public class StudentValidator {
 				&& (!checkWithRegExp(stud.getPatronymic()) || !lengthCheck(stud
 						.getPatronymic()))) {
 			return false;
+		} else if (!DateValidatorDefault.birthdayCheck(stud.getBirthday())) {
+			return false;
 		}
 		return true;
 	}
@@ -42,20 +41,6 @@ public class StudentValidator {
 
 	public boolean lengthCheck(String str) {
 		if (str.length() < 3 || str.length() > 150) {
-			return false;
-		}
-		return true;
-	}
-
-	public boolean birthdayCheck(Date birthday) {
-		if (birthday == null)
-			throw new IllegalArgumentException();
-		Calendar currentCalendar = GregorianCalendar.getInstance();
-		Calendar calendar = new GregorianCalendar();
-		calendar.setTime(birthday);
-		if ((currentCalendar.get(Calendar.YEAR) - calendar.get(Calendar.YEAR)) > 200
-				|| (currentCalendar.get(Calendar.YEAR) - calendar
-						.get(Calendar.YEAR)) < 18) {
 			return false;
 		}
 		return true;

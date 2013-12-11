@@ -8,12 +8,17 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.ejb.EJBException;
 import javax.ejb.embeddable.EJBContainer;
 import javax.naming.Context;
 import javax.naming.NamingException;
+import javax.transaction.UserTransaction;
 
 import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
+import mockit.Expectations;
+import mockit.Mocked;
 
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -52,14 +57,20 @@ public class StudentValidatorTest {
 	private static final String validPatronymic = "Сидоров";
 
 	private static final String validBirthday = "06.01.1991";
-	
+
 	private static SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+
+	@Resource
+	private UserTransaction userTransaction;
 
 	@Rule
 	public TemporaryFolder folder = new TemporaryFolder();
 
 	@Rule
 	public ExpectedException exception = ExpectedException.none();
+
+	@Mocked(stubOutClassInitialization = true)
+	final DateValidatorDefault unused = null;
 
 	@BeforeClass
 	public static void startEJBContainer() throws NamingException {
@@ -83,8 +94,9 @@ public class StudentValidatorTest {
 	@Before
 	public void setUp() throws ParseException, NamingException {
 		// Looks up for the EJB
-		studentValidator = (StudentValidator) ctx
-				.lookup("java:global/eng-teacher-web/StudentValidator");
+		Object obj = ctx.lookup("java:global/eng-teacher-web/StudentValidator");
+		assertThat(obj, instanceOf(StudentValidator.class));
+		studentValidator = (StudentValidator) obj;
 		validStudent = new Student();
 		validStudent.setLastName(validLastName);
 		validStudent.setFirstName(validFirstName);
@@ -94,19 +106,28 @@ public class StudentValidatorTest {
 
 	@Test
 	public void testValidate() throws ParseException {
+		new Expectations() {
+			{
+				DateValidatorDefault.birthdayCheck((Date) any);
+				result = true;
+			}
+		};
 		boolean result = studentValidator.validate(validStudent);
 		assertTrue(result);
 		unvalidStudent = new Student();
 		unvalidStudent.setLastName(unvalidLastName);
 		boolean invalidResult = studentValidator.validate(unvalidStudent);
 		assertFalse(invalidResult);
-	}
 
-	@Test
-	public void testBirthdayCheck() {
-		boolean result = studentValidator.birthdayCheck(validStudent
-				.getBirthday());
-		assertTrue(result);
+		new Expectations() {
+			{
+				DateValidatorDefault.birthdayCheck((Date) any);
+				result = false;
+			}
+		};
+		boolean actual = studentValidator.validate(validStudent);
+		assertFalse(actual);
+
 	}
 
 	@Test
@@ -129,12 +150,6 @@ public class StudentValidatorTest {
 		File createdFile = folder.newFile("myfilefile.txt");
 		assertTrue(createdFolder.exists());
 		assertTrue(createdFile.exists());
-	}
-
-	@Test
-	public void throwsIllegalArgumentExceptionIfIconIsNull() {
-		exception.expect(EJBException.class);
-		studentValidator.birthdayCheck(null);
 	}
 
 }
